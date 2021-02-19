@@ -8,6 +8,7 @@ services:
     volumes:
       - db:/var/lib/mysql
     environment:
+      - TZ=America/Sao_Paulo
       - MYSQL_ROOT_PASSWORD=112233
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
