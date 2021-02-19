@@ -36,6 +36,20 @@ services:
     depends_on:
       - app
 
+  emby:
+    image: emby/embyserver
+    restart: always
+    ports:
+      - 8096:8096
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /var/lib/docker/volumes/nextcloud-deploy_nextcloud/_data/data/guilherme/files/Movies:/mnt/movies
+    environment:
+      - UID=1000
+      - GID=100
+      - GIDLIST=100
+
 volumes:
   db:
   nextcloud:
