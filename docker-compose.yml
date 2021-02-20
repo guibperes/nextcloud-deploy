@@ -33,6 +33,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
+      - emby:/config
       - /var/lib/docker/volumes/nextcloud-deploy_nextcloud/_data/data/guilherme/files/Movies:/mnt/movies
     environment:
       - UID=1000
@@ -51,3 +52,4 @@ services:
 volumes:
   db:
   nextcloud:
+  emby:
