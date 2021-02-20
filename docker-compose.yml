@@ -27,18 +27,19 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD=112233
 
-  emby:
-    image: emby/embyserver
+  jellyfin:
+    image: jellyfin/jellyfin
     restart: always
+    user: 1000:1000
+    group_add:
+      - 122
     devices:
-      - /dev/dri:/dev/dri
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
     volumes:
-      - emby:/config
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
       - /var/lib/docker/volumes/nextcloud-deploy_nextcloud/_data/data/guilherme/files/Movies:/mnt/movies
-    environment:
-      - UID=1000
-      - GID=100
-      - GIDLIST=100
 
   proxy:
     build: ./proxy
@@ -52,4 +53,5 @@ services:
 volumes:
   db:
   nextcloud:
-  emby:
+  jellyfin_config:
+  jellyfin_cache:
